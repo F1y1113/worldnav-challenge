@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Track 1: WorldNav - Language-Conditioned World Navigation at the RoboWorld Challenge 2026, built on the LCVN benchmark.">
+  <meta name="keywords" content="Language-Conditioned World Navigation, Vision-and-Language Navigation, Open-Loop Trajectory Prediction, LCVN Benchmark, RoboWorld 2026, RoboPAD">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Track 1: WorldNav - Language-Conditioned World Navigation</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <link rel="stylesheet" href="./track_assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./track_assets/css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <script defer src="./track_assets/js/fontawesome.all.min.js"></script>
+  <link rel="icon" href="./assets/figure1-teaser.png" type="image/png">
+  <style>
+    .a { color: #ffc000; }
+    #backToTopBtn { position: fixed; bottom: 20px; right: 50px; z-index: 999; background-color: #ffc000; color: white; border: none; border-radius: 50%; padding: 12px 16px; font-size: 20px; cursor: pointer; box-shadow: 0px 4px 8px rgba(0,0,0,0.2); transition: opacity 0.3s; display: none; }
+    #backToTopBtn:hover { background-color: #76b900; }
+    .column.is-full-width { min-width: 0; }
+    .figcap { color: #666; font-size: 0.92em; margin-top: 8px; }
+    .score-box { display: inline-block; background-color: #f5f5f5; border-radius: 12px; padding: 20px 30px; }
+    /* Tables: keep the short first-column labels on one line and keep the rows tight. */
+    .content table.table td, .content table.table th { vertical-align: middle; padding: 0.45em 0.6em; }
+    .content table.table td:first-child, .content table.table th:first-child { white-space: nowrap; }
+    /* The citation block wraps its long lines instead of scrolling sideways. */
+    pre.bibtex { white-space: pre-wrap; word-break: break-word; }
+    /* Long labels wrap instead of pushing the page sideways on narrow screens. */
+    a.button { white-space: normal; max-width: 100%; height: auto; }
+    /* Justified prose leaves rivers of space around long links and e-mail addresses; keep it flush left. */
+    .has-text-justified { text-align: left !important; }
+    /* The metric direction column holds two-word labels and must not wrap. */
+    table.eval-table td:nth-child(2), table.eval-table th:nth-child(2) { white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <button onclick="scrollToTop()" id="backToTopBtn" title="Go to top">&uarr;</button>
+  <script>
+    window.onscroll = function() { scrollFunction(); };
+    function scrollFunction() {
+      const b = document.getElementById("backToTopBtn");
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) { b.style.display = "block"; } else { b.style.display = "none"; }
+    }
+    function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  </script>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              <i class="fas fa fa-globe fa-2x" style="color: #76b900; margin-bottom: 12px;"></i><br>
+              The <span style="color: #ffc000;">Robo</span><span style="color: #76b900;">World</span> Challenge 2026
+            </h1>
+            <h2 class="title is-2 publication-title">Track 1: WorldNav</h2>
+            <h3 class="title is-4 publication-title" style="color: #666;">Language-Conditioned World Navigation</h3>
+            <p style="margin-top: 12px; color: #666;">RoboWorld Challenge 2026, affiliated with the RoboPAD Workshop at NeurIPS 2026.</p>
+            <p style="margin-top: 16px;">
+              <a class="button is-medium" style="background-color: #76b900; color: white; border: none;" href="https://www.codabench.org/competitions/18185/" target="_blank">🚀 Submit on CodaBench</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="margin-top: 0px;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width left">
+          <div class="content has-text-justified">
+            <p><img src="./assets/figure1-teaser.png" alt="Language-conditioned visual navigation with LCVN" style="max-width: 100%; height: auto;"></p>
+            <p style="margin-top: 24px;">👋 Welcome to <b>Track <span style="color: #76b900;">#1</span>: WorldNav</b> of the <a href="https://roboworld2026.github.io/" target="_blank"><b>RoboWorld Challenge 2026</b></a>!</p>
+            <p>World models enable embodied agents to imagine how a scene may evolve in response to their actions and use those predictions to guide planning. For language-conditioned navigation, this means connecting what an agent sees and what it is asked to do with the future states it expects to encounter.</p>
+            <p>WorldNav explores this capability in an open-loop setting: given a single egocentric RGB observation and a natural-language instruction, an agent must generate a complete navigation trajectory without a goal image or intermediate environmental feedback.</p>
+            <p style="margin-top: 14px;">🏆 <b>Prize Pool:</b> <b>$2,800</b> per track (1st: <b>$1,500</b> &middot; 2nd: <b>$800</b> &middot; 3rd: <b>$500</b>) + Rising Star Award</p>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 40px;">🌍 Challenge Overview</h2>
+          <div class="content has-text-justified">
+            <p><b>WorldNav</b> invites participants to develop world-model-based or vision-language-action (VLA) agents for <b>language-conditioned visual navigation</b>. Given a single initial egocentric RGB observation and a natural-language instruction, the agent must generate the full future navigation trajectory without a goal image or intermediate environmental feedback.</p>
+            <p>The track encourages methods that couple imagination with control: world models that predict future observations to guide action selection, unified autoregressive models that interleave observation and action prediction, and VLA models that map vision and language to navigation actions. Policy-only methods are also welcome.</p>
+          </div>
+
+          <h2 class="title is-3" style="margin-top: 40px;">🎯 Task Definition</h2>
+          <div class="content has-text-justified">
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead><tr><th>Component</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr><td><b>Input</b></td><td>One initial egocentric RGB image and one natural-language instruction.</td></tr>
+                  <tr><td><b>Output</b></td><td>A sequence of continuous navigation actions, each consisting of planar displacement and yaw rotation.</td></tr>
+                  <tr><td><b>Termination</b></td><td>The agent decides when the trajectory ends; the submitted action sequence is scored as a whole.</td></tr>
+                  <tr><td><b>Setting</b></td><td>Open-loop generation: no goal image or intermediate environmental feedback is available.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Agents may generate the trajectory autoregressively, using their own predicted future observations or states to plan subsequent actions. The instruction remains the navigation goal throughout the rollout.</p>
+            <p><img src="./assets/figure4-qualitative.png" alt="Qualitative comparison of world-model navigation on the LCVN validation seen split" style="max-width: 100%; height: auto;"></p>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 40px;">📅 Competition Details</h2>
+          <div class="content has-text-justified">
+            <ul>
+              <li><b>Event:</b> RoboWorld Challenge 2026, affiliated with the <a href="https://robotpad2026.github.io/" target="_blank">RoboPAD Workshop at NeurIPS 2026</a>.</li>
+              <li><b>Registration:</b> follow the registration link on the <a href="https://roboworld2026.github.io/" target="_blank">challenge website</a>.</li>
+              <li><b>GitHub Repository:</b> documentation, submission format and FAQ in the <a href="https://github.com/F1y1113/worldnav_challenge" target="_blank">track repository</a>.</li>
+              <li><b>Submission platform:</b> <a href="https://www.codabench.org/competitions/18185/" target="_blank">CodaBench - WorldNav</a>.</li>
+              <li><b>Contact:</b> <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a>.</li>
+            </ul>
+            <h3 class="title is-5" style="color: #76b900; margin-top: 24px;">🏆 Awards</h3>
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead><tr><th>Place</th><th>Award</th></tr></thead>
+                <tbody>
+                  <tr><td>🥇 1st</td><td>$1,500 USD + Certificate</td></tr>
+                  <tr><td>🥈 2nd</td><td>$800 USD + Certificate</td></tr>
+                  <tr><td>🥉 3rd</td><td>$500 USD + Certificate</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Details of the Rising Star Award are available through the <a href="https://roboworld2026.github.io/" target="_blank">challenge website</a>.</p>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 40px;">🗂️ Phases</h2>
+          <div class="content has-text-justified">
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead><tr><th>Phase</th><th>Evaluation data</th><th>Leaderboard</th></tr></thead>
+                <tbody>
+                  <tr><td><b>Phase 1: Validation</b></td><td>Released <code>val_seen</code> and <code>val_unseen</code> splits</td><td>Ranked by the <code>val_unseen</code> Score.</td></tr>
+                  <tr><td><b>Phase 2: Final Evaluation</b></td><td>Held-out test split</td><td>Ranked by the test Score.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><b>Phase 1 supports method development and validation; it does not determine shortlisting, final rankings, or awards. Final rankings and awards are determined entirely by the Phase 2 test Score.</b> Scores from the two phases are not combined. The Phase 1 board is ranked by the <code>val_unseen</code> Score, and the <code>val_seen</code> metrics are reported in the submission scoring log.</p>
+
+            <h3 class="title is-5" style="color: #76b900; margin-top: 24px;">🗓️ Timeline</h3>
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead><tr><th>Event</th><th>Date</th></tr></thead>
+                <tbody>
+                  <tr><td>Phase 1 opens</td><td>September 30, 2026, 16:00 UTC</td></tr>
+                  <tr><td>Phase 1 deadline</td><td>October 31, 2026, 15:59 UTC</td></tr>
+                  <tr><td>Phase 2 opens</td><td>November 2026</td></tr>
+                  <tr><td>Phase 2 deadline</td><td>November 20, 2026</td></tr>
+                  <tr><td>Awards announcement</td><td>December 2026</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>See the <a href="https://www.codabench.org/competitions/18185/" target="_blank">CodaBench competition page</a> for the exact Phase 2 opening and closing times and schedule updates.</p>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 40px;">📊 Dataset</h2>
+          <div class="content has-text-justified">
+            <p>The track uses the <b>LCVN dataset</b>, comprising <b>39,016 trajectories</b> and <b>117,048 human-verified instructions</b> sourced from Go Stanford, ReCon, SCAND, HuRoN, and TartanDrive.</p>
+            <p>Each trajectory is paired with three instruction styles:</p>
+            <ul>
+              <li><b>Concise:</b> short instructions containing essential directional cues.</li>
+              <li><b>Intricate:</b> detailed instructions describing visual context, objects, people, and scene layout.</li>
+              <li><b>Landmark-grounded:</b> instructions anchored to salient environmental landmarks.</li>
+            </ul>
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead><tr><th>Split</th><th>Trajectories</th><th>Instructions</th><th>Use</th></tr></thead>
+                <tbody>
+                  <tr><td>Train</td><td>28,813</td><td>86,439</td><td>Training</td></tr>
+                  <tr><td>Validation Seen</td><td>3,602</td><td>10,806</td><td>In-domain validation</td></tr>
+                  <tr><td>Validation Unseen</td><td>1,500</td><td>4,500</td><td>Unseen-domain validation</td></tr>
+                  <tr><td>Test</td><td>5,101</td><td>15,303</td><td>Final evaluation</td></tr>
+                  <tr><td><b>Total</b></td><td><b>39,016</b></td><td><b>117,048</b></td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Go Stanford, ReCon, SCAND, and HuRoN provide the training and in-domain evaluation data. The unseen validation split is drawn exclusively from TartanDrive. The test split contains trajectories from both TartanDrive and in-domain sources. The training and validation splits are available on <a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank">Hugging Face</a>. Phase 2 provides the test inference inputs: initial RGB observations and language instructions. Reference test trajectories and target annotations remain withheld for official evaluation.</p>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 40px;">🧠 Baseline Models</h2>
+          <div class="content has-text-justified">
+            <p>Two complementary LCVN approaches serve as the reference baselines:</p>
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead><tr><th>Baseline</th><th>Approach</th></tr></thead>
+                <tbody>
+                  <tr><td><b>LCVN-Uni</b></td><td>A unified autoregressive multimodal model fine-tuned from Anole-7B that jointly predicts the next action and next observation in a single forward pass.</td></tr>
+                  <tr><td><b>LCVN-WM + LCVN-AC</b></td><td>A language-conditioned diffusion world model paired with an actor-critic agent trained entirely in the world model's latent space using intrinsic rollout rewards.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><img src="./assets/lcvn-wm-ac.jpg" alt="LCVN world model and actor-critic agent" style="max-width: 100%; height: auto;"></p>
+            <p>Implementations and usage instructions are provided in the <a href="https://github.com/F1y1113/LCVN" target="_blank">LCVN repository</a>. See the <a href="https://arxiv.org/abs/2603.26741" target="_blank">LCVN paper</a> for details.</p>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 40px;">📏 Evaluation</h2>
+          <div class="content has-text-justified">
+            <p>Submissions are evaluated on navigation quality using <b>Success Rate (SR)</b>, <b>Absolute Trajectory Error (ATE)</b>, and <b>Relative Pose Error (RPE)</b>.</p>
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth eval-table">
+                <thead><tr><th>Metric</th><th>Direction</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr><td><b>SR</b></td><td>Higher is better</td><td>Fraction of trajectories whose final distance to the goal is smaller than the agent's average step size.</td></tr>
+                  <tr><td><b>ATE</b></td><td>Lower is better</td><td>Global trajectory accuracy, measured by the Euclidean distance between aligned predicted and reference poses.</td></tr>
+                  <tr><td><b>RPE</b></td><td>Lower is better</td><td>Local trajectory consistency, measured by discrepancies in relative motion between consecutive predicted and reference poses.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+              <h3 class="title is-4" style="color: #333; margin-bottom: 14px;">🏁 Composite Score</h3>
+              <div class="score-box">
+                <span style="font-size: 1.4em; font-weight: bold; color: #333;">Score = 100 × (0.70 × SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))</span>
+              </div>
+            </div>
+
+            <p>The weights are <b>70% for SR</b>, <b>20% for the ATE-based term</b>, and <b>10% for the RPE-based term</b>. SR is a fraction in <code>[0, 1]</code>. Both phases use this formula, calculated from full-precision metrics and displayed to six decimal places.</p>
+            <p>Ties are broken by higher SR, then lower ATE, then lower RPE, and finally earlier submission time, using the metrics for the phase's ranking split.</p>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 40px;">🔗 Contact and Resources</h2>
+          <div class="content has-text-justified">
+            <p>For technical questions, open an issue in this repository. For competition inquiries, contact <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a>.</p>
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead><tr><th>Resource</th><th>Link</th></tr></thead>
+                <tbody>
+                  <tr><td>Challenge website and registration</td><td><a href="https://roboworld2026.github.io/" target="_blank">RoboWorld 2026</a></td></tr>
+                  <tr><td>Associated workshop</td><td><a href="https://robotpad2026.github.io/" target="_blank">RoboPAD at NeurIPS 2026</a></td></tr>
+                  <tr><td>GitHub Repository</td><td><a href="https://github.com/F1y1113/worldnav_challenge" target="_blank">worldnav_challenge</a></td></tr>
+                  <tr><td>Starting kits, submissions, and leaderboard</td><td><a href="https://www.codabench.org/competitions/18185/" target="_blank">CodaBench</a></td></tr>
+                  <tr><td>Baseline implementation</td><td><a href="https://github.com/F1y1113/LCVN" target="_blank">LCVN repository</a></td></tr>
+                  <tr><td>Dataset</td><td><a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank">LCVN on Hugging Face</a></td></tr>
+                  <tr><td>Paper</td><td><a href="https://arxiv.org/abs/2603.26741" target="_blank">Language-Conditioned World Modeling for Visual Navigation</a></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 40px;">❓ Frequently Asked Questions</h2>
+          <div class="content has-text-justified">
+            <p><b>1. Do I have to use a world model?</b><br>No. World-model agents, VLA models, and policy-only methods are all eligible. The track particularly encourages approaches that use predicted future states to guide planning.</p>
+            <p><b>2. Do I need to run a simulator or submit executable agent code?</b><br>No simulator or executable agent code is required for the scored submission. Upload the prediction files described in the <a href="https://github.com/F1y1113/worldnav_challenge" target="_blank">track repository</a>; the evaluation server scores the submitted trajectories.</p>
+            <p><b>3. Can the agent receive new observations during inference?</b><br>Only the initial RGB observation and the instruction are provided. The agent may generate and use its own predicted future observations, but it cannot access intermediate observations from the environment.</p>
+            <p><b>4. Are test annotations available?</b><br>No. Phase 2 provides the initial observations and instructions needed for inference. Reference test trajectories and target annotations remain withheld.</p>
+            <p><b>5. Which episodes must my submission include?</b><br>Include every episode in the official manifest exactly once. Phase 1 requires 10,806 <code>val_seen</code> episodes and 4,500 <code>val_unseen</code> episodes, covering the three instruction styles. Copy episode identifiers directly from the manifests.</p>
+            <p><b>6. What should I do if my submission is rejected?</b><br>Run the format checker that ships with the starting kit (<code>python3 check_submission.py submission.zip</code>) first: it applies the same structural rules as the official scoring program and prints the same message. Then check the CodaBench scoring log. A <code>SUBMISSION REJECTED:</code> message identifies a submission issue, such as missing episodes, duplicate identifiers, or an incorrect archive layout. Correct the reported issue and resubmit. A <code>SCORING DATA ERROR (organizer):</code> message indicates an organizer-side problem; report it through GitHub Issues or email.</p>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 40px;">📄 License and Terms</h2>
+          <div class="content has-text-justified">
+            <p>Refer to the <a href="https://github.com/F1y1113/LCVN" target="_blank">LCVN repository</a>, the <a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank">dataset page</a>, and the original source datasets for the applicable code and data licenses. Participation is governed by the Track 1 Terms and Conditions on <a href="https://www.codabench.org/competitions/18185/" target="_blank">CodaBench</a>.</p>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 40px;">📚 Citation</h2>
+          <div class="content has-text-justified">
+            <p>If you use the LCVN benchmark or the WorldNav track resources, please cite:</p>
+            <div style="max-width: 100%; overflow-x: auto; background-color: #f9f9f9; border-radius: 5px; padding: 1em; font-size: 0.9em; box-sizing: border-box;">
+              <pre class="bibtex" style="margin: 0; font-family: monospace; overflow-x: auto;">
+@misc{dong2026languageconditionedworldmodelingvisual,
+  title         = {Language-Conditioned World Modeling for Visual Navigation},
+  author        = {Yifei Dong and Fengyi Wu and Yilong Dai and Lingdong Kong and Guangyu Chen and Xu Zhu and Qiyu Hu and Tianyu Wang and Johnalbert Garnica and Feng Liu and Siyu Huang and Qi Dai and Zhi-Qi Cheng},
+  year          = {2026},
+  eprint        = {2603.26741},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2603.26741}
+}
+
+@misc{roboworld2026track1,
+  title        = {Track 1 | WorldNav: Language-Conditioned World Navigation},
+  author       = {RoboWorld Challenge 2026 Organizers},
+  year         = {2026},
+  howpublished = {https://roboworld2026.github.io/track1}
+}
+              </pre>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div><br>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>This website is under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> license.</p>
+            <p>Copyright &copy; <span style="color: #ffc000;">Robo</span><span style="color: #76b900;">World</span> 2026 All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
