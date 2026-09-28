@@ -18,7 +18,7 @@
     #backToTopBtn:hover { background-color: #76b900; }
     .column.is-full-width { min-width: 0; }
     .figcap { color: #666; font-size: 0.92em; margin-top: 8px; }
-    .score-box { display: inline-block; background-color: #f5f5f5; border-radius: 12px; padding: 20px 30px; }
+    .score-box { display: inline-block; max-width: 100%; overflow-wrap: anywhere; background-color: #f5f5f5; border-radius: 12px; padding: 20px 30px; }
     /* Tables: keep the short first-column labels on one line and keep the rows tight. */
     .content table.table td, .content table.table th { vertical-align: middle; padding: 0.45em 0.6em; }
     .content table.table td:first-child, .content table.table th:first-child { white-space: nowrap; }
@@ -91,7 +91,7 @@
                 <thead><tr><th>Component</th><th>Description</th></tr></thead>
                 <tbody>
                   <tr><td><b>Input</b></td><td>One initial egocentric RGB image and one natural-language instruction.</td></tr>
-                  <tr><td><b>Output</b></td><td>A sequence of continuous navigation actions, each consisting of planar displacement and yaw rotation.</td></tr>
+                  <tr><td><b>Output</b></td><td>A variable-length sequence of global-planar motion and yaw updates.</td></tr>
                   <tr><td><b>Termination</b></td><td>The agent decides when the trajectory ends; the submitted action sequence is scored as a whole.</td></tr>
                   <tr><td><b>Setting</b></td><td>Open-loop generation: no goal image or intermediate environmental feedback is available.</td></tr>
                 </tbody>
@@ -108,7 +108,7 @@
             <ul>
               <li><b>Event:</b> RoboWorld Challenge 2026, affiliated with the <a href="https://robotpad2026.github.io/" target="_blank">RoboPAD Workshop at NeurIPS 2026</a>.</li>
               <li><b>Registration:</b> follow the registration link on the <a href="https://roboworld2026.github.io/" target="_blank">challenge website</a>.</li>
-              <li><b>GitHub Repository:</b> documentation, submission format and FAQ in the <a href="https://github.com/F1y1113/worldnav_challenge" target="_blank">track repository</a>.</li>
+              <li><b>GitHub Repository:</b> documentation, submission format and FAQ in the <a href="https://github.com/F1y1113/worldnav-challenge" target="_blank">track repository</a>.</li>
               <li><b>Submission platform:</b> <a href="https://www.codabench.org/competitions/18185/" target="_blank">CodaBench - WorldNav</a>.</li>
               <li><b>Contact:</b> <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a>.</li>
             </ul>
@@ -146,7 +146,7 @@
               <table class="table is-bordered is-striped is-hoverable is-fullwidth">
                 <thead><tr><th>Event</th><th>Date</th></tr></thead>
                 <tbody>
-                  <tr><td>Phase 1 opens</td><td>September 30, 2026, 16:00 UTC</td></tr>
+                  <tr><td>Phase 1 opens</td><td>See the active phase dates on CodaBench</td></tr>
                   <tr><td>Phase 1 deadline</td><td>October 31, 2026, 15:59 UTC</td></tr>
                   <tr><td>Phase 2 opens</td><td>November 2026</td></tr>
                   <tr><td>Phase 2 deadline</td><td>November 20, 2026</td></tr>
@@ -205,14 +205,16 @@
 
           <h2 class="title is-3" style="margin-top: 40px;">📏 Evaluation</h2>
           <div class="content has-text-justified">
-            <p>Submissions are evaluated on navigation quality using <b>Success Rate (SR)</b>, <b>Absolute Trajectory Error (ATE)</b>, and <b>Relative Pose Error (RPE)</b>.</p>
+            <p>Submissions are evaluated against one recorded trajectory using <b>Success Rate (SR)</b>, <b>Absolute Trajectory Error (ATE)</b>, <b>Relative Pose Error (RPE)</b>, <b>Full-route fidelity (D)</b>, and <b>Heading and turn fidelity (H)</b>.</p>
             <div class="table-container">
               <table class="table is-bordered is-striped is-hoverable is-fullwidth eval-table">
                 <thead><tr><th>Metric</th><th>Direction</th><th>Description</th></tr></thead>
                 <tbody>
-                  <tr><td><b>SR</b></td><td>Higher is better</td><td>Fraction of trajectories whose final distance to the goal is smaller than the agent's average step size.</td></tr>
+                  <tr><td><b>SR</b></td><td>Higher is better</td><td>Fraction ending within the reference average-step radius, subject to a 0.6 dataset-unit minimum.</td></tr>
                   <tr><td><b>ATE</b></td><td>Lower is better</td><td>Global trajectory accuracy, measured by the Euclidean distance between aligned predicted and reference poses.</td></tr>
                   <tr><td><b>RPE</b></td><td>Lower is better</td><td>Local trajectory consistency, measured by discrepancies in relative motion between consecutive predicted and reference poses.</td></tr>
+                  <tr><td><b>Full-route fidelity (D)</b></td><td>Higher is better</td><td>Agreement with the full ordered reference route, with excess travel penalized.</td></tr>
+                  <tr><td><b>Heading and turn fidelity (H)</b></td><td>Higher is better</td><td>Facing agreement while moving and agreement of the direction, place and amount of turns.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -220,12 +222,12 @@
             <div style="text-align: center; margin: 30px 0;">
               <h3 class="title is-4" style="color: #333; margin-bottom: 14px;">🏁 Composite Score</h3>
               <div class="score-box">
-                <span style="font-size: 1.4em; font-weight: bold; color: #333;">Score = 100 × (0.70 × SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))</span>
+                <span style="font-size: 1.15em; font-weight: bold; color: #333;">Score = (100 / N) Σᵢ [Dᵢ(1 + Hᵢ) / 2] [0.70 + 0.10sᵢ + 0.10 / (1 + aᵢ) + 0.10 / (1 + rᵢ)]</span>
               </div>
             </div>
 
-            <p>The weights are <b>70% for SR</b>, <b>20% for the ATE-based term</b>, and <b>10% for the RPE-based term</b>. SR is a fraction in <code>[0, 1]</code>. Both phases use this formula, calculated from full-precision metrics and displayed to six decimal places.</p>
-            <p>Ties are broken by higher SR, then lower ATE, then lower RPE, and finally earlier submission time, using the metrics for the phase's ranking split.</p>
+            <p>Here <code>sᵢ</code> is the episode success bit; <code>aᵢ</code> and <code>rᵢ</code> are its original ATE/RPE error ingredients. Complete-route and heading quality form the base; the three familiar measures make bounded adjustments. Score is averaged per episode, so it cannot be reconstructed by inserting the displayed split averages into this equation. The <a href="https://github.com/F1y1113/worldnav-challenge#-evaluation" target="_blank">track README</a> explains D and H and links a reference-data-free demonstration.</p>
+            <p>This score measures agreement with one recorded route and facing sequence. Both phases use the same rule and rank by Score; equal Scores follow the platform's submission order.</p>
           </div>
 
           <hr>
@@ -239,7 +241,7 @@
                 <tbody>
                   <tr><td>Challenge website and registration</td><td><a href="https://roboworld2026.github.io/" target="_blank">RoboWorld 2026</a></td></tr>
                   <tr><td>Associated workshop</td><td><a href="https://robotpad2026.github.io/" target="_blank">RoboPAD at NeurIPS 2026</a></td></tr>
-                  <tr><td>GitHub Repository</td><td><a href="https://github.com/F1y1113/worldnav_challenge" target="_blank">worldnav_challenge</a></td></tr>
+                  <tr><td>GitHub Repository</td><td><a href="https://github.com/F1y1113/worldnav-challenge" target="_blank">worldnav-challenge</a></td></tr>
                   <tr><td>Starting kits, submissions, and leaderboard</td><td><a href="https://www.codabench.org/competitions/18185/" target="_blank">CodaBench</a></td></tr>
                   <tr><td>Baseline implementation</td><td><a href="https://github.com/F1y1113/LCVN" target="_blank">LCVN repository</a></td></tr>
                   <tr><td>Dataset</td><td><a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank">LCVN on Hugging Face</a></td></tr>
@@ -254,7 +256,7 @@
           <h2 class="title is-3" style="margin-top: 40px;">❓ Frequently Asked Questions</h2>
           <div class="content has-text-justified">
             <p><b>1. Do I have to use a world model?</b><br>No. World-model agents, VLA models, and policy-only methods are all eligible. The track particularly encourages approaches that use predicted future states to guide planning.</p>
-            <p><b>2. Do I need to run a simulator or submit executable agent code?</b><br>No simulator or executable agent code is required for the scored submission. Upload the prediction files described in the <a href="https://github.com/F1y1113/worldnav_challenge" target="_blank">track repository</a>; the evaluation server scores the submitted trajectories.</p>
+            <p><b>2. Do I need to run a simulator or submit executable agent code?</b><br>No simulator or executable agent code is required for the scored submission. Upload the prediction files described in the <a href="https://github.com/F1y1113/worldnav-challenge" target="_blank">track repository</a>; the evaluation server scores the submitted trajectories.</p>
             <p><b>3. Can the agent receive new observations during inference?</b><br>Only the initial RGB observation and the instruction are provided. The agent may generate and use its own predicted future observations, but it cannot access intermediate observations from the environment.</p>
             <p><b>4. Are test annotations available?</b><br>No. Phase 2 provides the initial observations and instructions needed for inference. Reference test trajectories and target annotations remain withheld.</p>
             <p><b>5. Which episodes must my submission include?</b><br>Include every episode in the official manifest exactly once. Phase 1 requires 10,806 <code>val_seen</code> episodes and 4,500 <code>val_unseen</code> episodes, covering the three instruction styles. Copy episode identifiers directly from the manifests.</p>
