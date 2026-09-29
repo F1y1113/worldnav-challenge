@@ -222,7 +222,7 @@ The example below illustrates the JSON structure with one episode and three moti
 
 At test time, use only the initial RGB image and instruction; the private scorer reconstructs the route from a withheld initial pose. For global training deltas `(ΔX, ΔY)`, use released training yaw `ψ`: `dx = cos(ψ)ΔX + sin(ψ)ΔY`, `dy = −sin(ψ)ΔX + cos(ψ)ΔY`.
 
-Submit at most 64 actions per episode, with `hypot(dx, dy) ≤ 2.46` dataset coordinate units and `−π ≤ dyaw < π` for every action. Download the [example ZIP on CodaBench](https://www.codabench.org/competitions/18185/) for the complete IDs and archive layout, then replace its illustrative actions.
+See [CodaBench](https://www.codabench.org/competitions/18185/) → **Submission & Evaluation** for action limits and the complete example ZIP.
 
 ### Package and Upload
 
