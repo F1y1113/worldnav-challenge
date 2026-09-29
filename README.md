@@ -186,11 +186,7 @@ $$
 \right)
 $$
 
-Here `N` is the number of episodes. `SR_i` is episode `i`'s binary success result; `ATE_i` and `RPE_i` are its original per-episode root-mean-square errors, numerically normalized by one dataset coordinate unit in the denominators. The published split SR/ATE/RPE retain their respective aggregate definitions. Score averages **episode contributions**, so it cannot be reconstructed by substituting the displayed split averages into the equation.
-
-Full-route fidelity and heading and turn fidelity establish the trajectory-quality factor; SR, ATE and RPE adjust it. The two additional measures are WorldNav-specific adaptations of route and heading evaluation. The five metric calculations and their input formats are shown in the [evaluation demonstration](demonstration.py). This is a calculation reference, not the official scorer or a runnable submission.
-
-The score ranks agreement with **one recorded route and facing sequence**. Both phases use the same formula, calculated from full-precision values and displayed to six decimal places. Ties use Score as the ranking key and then the platform's submission order.
+`N` is the number of episodes. `SR_i` is binary success; `ATE_i` and `RPE_i` are per-episode errors in dataset coordinate units. Score averages episode contributions. See [demonstration.py](demonstration.py) for the five metric calculations.
 
 ## 📥 Submission Format
 
@@ -219,18 +215,14 @@ The example below illustrates the JSON structure with one episode and three moti
 
 | Field | Description |
 |:--|:--|
-| `split` | `val_seen`, `val_unseen`, or `test`, matching the filename and submission phase. |
-| `episodes` | Predictions for all episodes in the corresponding official manifest. |
-| `episode_id` | The episode identifier from the manifest; each identifier must appear exactly once. |
-| `actions` | Ordered triples `[dx, dy, dyaw]`: `dx` is forward displacement and `dy` is leftward displacement in the agent's **current local frame**; `dyaw` is a yaw update in radians. |
+| `split` | `val_seen`, `val_unseen`, or `test`, matching the filename. |
+| `episodes` | Predictions for every episode in the phase manifest. |
+| `episode_id` | Manifest identifier; include each exactly once. |
+| `actions` | Variable-length `[dx, dy, dyaw]` sequence. `dx` is forward, `dy` is leftward in the agent's **current local frame**, and `dyaw` is in radians. |
 
-Generate each trajectory from its initial RGB observation and natural-language instruction. The model decides how many actions to emit; submissions may use variable-length action sequences.
+At test time, use only the initial RGB image and instruction; the private scorer reconstructs the route from a withheld initial pose. For global training deltas `(ΔX, ΔY)`, use released training yaw `ψ`: `dx = cos(ψ)ΔX + sin(ψ)ΔY`, `dy = −sin(ψ)ΔX + cos(ψ)ΔY`.
 
-An episode may contain up to 64 submitted actions. Each action must satisfy `hypot(dx, dy) ≤ 2.46` in dataset coordinate units and `−π ≤ dyaw < π` radians. These are submission-format limits, independent of the withheld reference sequence.
-
-The private scorer starts from the recorded initial pose, rotates each submitted local displacement by the current predicted heading, and then applies `dyaw`. The initial pose and goal position are not supplied at test time. If training labels are stored as global position differences `(ΔX, ΔY)`, convert them using the training pose yaw `ψ`: `dx = cos(ψ)ΔX + sin(ψ)ΔY`, `dy = −sin(ψ)ΔX + cos(ψ)ΔY`. This conversion uses released training poses only; do not assume a test pose is available.
-
-The scored submission consists only of prediction files. The downloadable example ZIP on CodaBench is a format template, not a trained model or reference answer. See the competition's **Submission & Evaluation** page for the full file specification.
+Submit at most 64 actions per episode, with `hypot(dx, dy) ≤ 2.46` dataset coordinate units and `−π ≤ dyaw < π` for every action. Download the [example ZIP on CodaBench](https://www.codabench.org/competitions/18185/) for the complete IDs and archive layout, then replace its illustrative actions.
 
 ### Package and Upload
 
