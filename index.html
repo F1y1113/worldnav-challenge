@@ -230,8 +230,7 @@
               </div>
             </div>
 
-            <p>Here <code>SRᵢ</code> is the binary success result for episode <code>i</code>; <code>ATEᵢ</code> and <code>RPEᵢ</code> are its original per-episode errors, normalized by one dataset coordinate unit in the denominators. The displayed split metrics use their own aggregation, so they cannot be inserted into this episode-level equation. The <a href="https://github.com/F1y1113/worldnav-challenge#-evaluation" target="_blank">track README</a> describes the metrics, and its <a href="https://github.com/F1y1113/worldnav-challenge/blob/main/demonstration.py" target="_blank">demonstration.py</a> shows the five calculations.</p>
-            <p>This score measures agreement with one recorded route and facing sequence. Both phases use the same rule and rank by Score; equal Scores follow the platform's submission order.</p>
+            <p><code>SRᵢ</code> is binary success; <code>ATEᵢ</code> and <code>RPEᵢ</code> are per-episode errors in dataset coordinate units. Score averages episode contributions. See <a href="https://github.com/F1y1113/worldnav-challenge/blob/main/demonstration.py" target="_blank">demonstration.py</a> for the five metric calculations.</p>
           </div>
 
           <hr>
