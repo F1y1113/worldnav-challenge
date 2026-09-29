@@ -1,19 +1,25 @@
-"""WorldNav metric calculation demonstration only.
+"""Metric calculation demonstration only.
 
 Score = (100 / N) * sum_i { FullRouteFidelity_i * (1 + HeadingTurnFidelity_i) / 2
                             * [0.70 + 0.10 * SR_i + 0.10 / (1 + ATE_i)
                                + 0.10 / (1 + RPE_i)] }
 
-SR_i is the binary episode result. ATE_i and RPE_i are episode errors in
-one dataset coordinate unit. The split-level metrics use their own aggregates.
-This reference shows calculations, not an official scoring program.
 """
 
 import bisect
 import math
 
-# Numerical constants used by the fidelity calculations.
+# Input shapes:
+# action_sequence: [[dx, dy, dyaw], ...] in the current local agent frame.
+# initial_pose: (x0, y0, yaw0)
+# predicted_xy, reference_xy: [(x0, y0), (x1, y1), ...]
+# predicted_yaw, reference_yaw: [yaw0, yaw1, ...]
+# goal_xy: (goal_x, goal_y)
+# average_step_length: float
+
+# Numerical constants for heading and turn fidelity.
 EPS = 1e-12
+# 16-point Gauss-Legendre nodes and weights for turn integration.
 GAUSS_X = (
     -0.9894009349916499, -0.9445750230732326, -0.8656312023878318,
     -0.755404408355003, -0.6178762444026438, -0.45801677765722737,
@@ -30,17 +36,6 @@ GAUSS_W = (
     0.12462897125553399, 0.09515851168249272, 0.062253523938647824,
     0.027152459411753902,
 )
-
-# Input shapes (names only; no reference data or test answers are included):
-# action_sequence: [[dx, dy, dyaw], ...] in the current local agent frame.
-# initial_pose: [x0, y0, yaw0] -- held only by the private evaluator.
-# predicted_xy: [(x0, y0), (x1, y1), ...] after private action integration.
-# predicted_yaw: [yaw0, yaw1, ...] for the same predicted poses.
-# reference_xy, reference_yaw: recorded pose sequences, evaluator-only.
-# goal_xy: (goal_x, goal_y), evaluator-only.
-# average_step_length: reference-source scale used by the SR criterion.
-# The five metric functions below accept reconstructed poses. Participants
-# submit only action_sequence; no numeric test pose or reference is released.
 
 
 def success_rate(predicted_xy, goal_xy, average_step_length):
