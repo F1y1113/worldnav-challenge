@@ -273,7 +273,7 @@ For technical questions, open an issue in this repository. For competition inqui
 |:--|:--|
 | Challenge website and registration | [RoboWorld 2026](https://roboworld2026.github.io/) |
 | Associated workshop | [RoboPAD at NeurIPS 2026](https://robotpad2026.github.io/) |
-| Track page | [WorldNav](https://roboworld2026.github.io/track1) |
+| Track page | [WorldNav](https://f1y1113.github.io/worldnav-challenge/) |
 | Starting kits, submissions, and leaderboard | [CodaBench](https://www.codabench.org/competitions/18185/) |
 | Baseline implementation | [LCVN repository](https://github.com/F1y1113/LCVN) |
 | Dataset | [LCVN on Hugging Face](https://huggingface.co/datasets/fly1113/LCVN) |
