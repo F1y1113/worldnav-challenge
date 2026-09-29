@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**Official Track Documentation for [Track 1](https://roboworld2026.github.io/track1)**
+**Official Track Documentation for [Track 1](https://f1y1113.github.io/worldnav-challenge/)**
 
 *Built on the LCVN benchmark — "Language-Conditioned World Modeling for Visual Navigation"*<br>([LCVN repository](https://github.com/F1y1113/LCVN) | [LCVN dataset](https://huggingface.co/datasets/fly1113/LCVN) | [LCVN paper](https://arxiv.org/abs/2603.26741))
 
