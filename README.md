@@ -276,11 +276,11 @@ Include every episode in the official manifest exactly once. Phase 1 requires 10
 
 **6. What should I do if my submission is rejected?**
 
-Check the CodaBench scoring log. A `SUBMISSION REJECTED:` message identifies a submission issue, such as missing episodes, duplicate identifiers, or an incorrect archive layout. Correct the reported issue and resubmit. A `SCORING DATA ERROR (organizer):` message indicates an organizer-side problem; report it through GitHub Issues or email.
+Check the CodaBench scoring log. A `SUBMISSION REJECTED:` message identifies a submission issue, such as missing episodes, duplicate identifiers, or an incorrect archive layout. Correct the reported issue and resubmit. A `SCORING DATA ERROR (organizer):` message indicates an organizer-side problem; report it to the competition contact email below.
 
 ## 🔗 Contact and Resources
 
-For technical questions, [open an issue in the track repository](https://github.com/F1y1113/worldnav-challenge/issues). For competition inquiries, contact [roboworld2026@outlook.com](mailto:roboworld2026@outlook.com).
+For technical or competition questions, contact [roboworld2026@outlook.com](mailto:roboworld2026@outlook.com).
 
 | Resource | Link |
 |:--|:--|
