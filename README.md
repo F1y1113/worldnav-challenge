@@ -280,12 +280,13 @@ Check the CodaBench scoring log. A `SUBMISSION REJECTED:` message identifies a s
 
 ## 🔗 Contact and Resources
 
-For technical questions, open an issue in this repository. For competition inquiries, contact [roboworld2026@outlook.com](mailto:roboworld2026@outlook.com).
+For technical questions, [open an issue in the track repository](https://github.com/F1y1113/worldnav-challenge/issues). For competition inquiries, contact [roboworld2026@outlook.com](mailto:roboworld2026@outlook.com).
 
 | Resource | Link |
 |:--|:--|
 | Challenge website and registration | [RoboWorld 2026](https://roboworld2026.github.io/) |
 | Associated workshop | [RoboPAD at NeurIPS 2026](https://robotpad2026.github.io/) |
+| GitHub Repository | [worldnav-challenge](https://github.com/F1y1113/worldnav-challenge) |
 | Track page | [WorldNav](https://f1y1113.github.io/worldnav-challenge/) |
 | Example submission, metric demonstration, and leaderboard | [CodaBench](https://www.codabench.org/competitions/18185/) |
 | Baseline implementation | [LCVN repository](https://github.com/F1y1113/LCVN) |
