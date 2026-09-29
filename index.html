@@ -226,11 +226,11 @@
               <div class="score-box">
                 <span class="formula-line">Score = (100 / N) Σᵢ</span>
                 <span class="formula-line">× [Full-route fidelityᵢ × (1 + Heading and turn fidelityᵢ) / 2]</span>
-                <span class="formula-line">× [0.70 + 0.10sᵢ + 0.10 / (1 + aᵢ) + 0.10 / (1 + rᵢ)]</span>
+                <span class="formula-line">× [0.70 + 0.10 SRᵢ + 0.10 / (1 + ATEᵢ) + 0.10 / (1 + RPEᵢ)]</span>
               </div>
             </div>
 
-            <p>Here <code>sᵢ</code> is the episode success bit; <code>aᵢ</code> and <code>rᵢ</code> are its original ATE/RPE error ingredients. Complete-route and heading quality form the base; the three familiar measures make bounded adjustments. Score is averaged per episode, so it cannot be reconstructed by inserting the displayed split averages into this equation. The <a href="https://github.com/F1y1113/worldnav-challenge#-evaluation" target="_blank">track README</a> describes the metrics.</p>
+            <p>Here <code>SRᵢ</code> is the binary success result for episode <code>i</code>; <code>ATEᵢ</code> and <code>RPEᵢ</code> are its original per-episode errors, normalized by one dataset coordinate unit in the denominators. The displayed split metrics use their own aggregation, so they cannot be inserted into this episode-level equation. The <a href="https://github.com/F1y1113/worldnav-challenge#-evaluation" target="_blank">track README</a> describes the metrics, and its <a href="https://github.com/F1y1113/worldnav-challenge/blob/main/demonstration.py" target="_blank">demonstration.py</a> shows the five calculations.</p>
             <p>This score measures agreement with one recorded route and facing sequence. Both phases use the same rule and rank by Score; equal Scores follow the platform's submission order.</p>
           </div>
 
@@ -246,7 +246,8 @@
                   <tr><td>Challenge website and registration</td><td><a href="https://roboworld2026.github.io/" target="_blank">RoboWorld 2026</a></td></tr>
                   <tr><td>Associated workshop</td><td><a href="https://robotpad2026.github.io/" target="_blank">RoboPAD at NeurIPS 2026</a></td></tr>
                   <tr><td>GitHub Repository</td><td><a href="https://github.com/F1y1113/worldnav-challenge" target="_blank">worldnav-challenge</a></td></tr>
-                  <tr><td>Example submission, metric demonstration, and leaderboard</td><td><a href="https://www.codabench.org/competitions/18185/" target="_blank">CodaBench</a></td></tr>
+                  <tr><td>Example submission and leaderboard</td><td><a href="https://www.codabench.org/competitions/18185/" target="_blank">CodaBench</a></td></tr>
+                  <tr><td>Metric calculation demonstration</td><td><a href="https://github.com/F1y1113/worldnav-challenge/blob/main/demonstration.py" target="_blank">demonstration.py on GitHub</a></td></tr>
                   <tr><td>Baseline implementation</td><td><a href="https://github.com/F1y1113/LCVN" target="_blank">LCVN repository</a></td></tr>
                   <tr><td>Dataset</td><td><a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank">LCVN on Hugging Face</a></td></tr>
                   <tr><td>Paper</td><td><a href="https://arxiv.org/abs/2603.26741" target="_blank">Language-Conditioned World Modeling for Visual Navigation</a></td></tr>
