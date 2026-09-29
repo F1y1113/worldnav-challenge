@@ -182,13 +182,13 @@ $$
 = \frac{100}{N}\sum_{i=1}^{N}
 \frac{\mathrm{FullRouteFidelity}_i(1+\mathrm{HeadingTurnFidelity}_i)}{2}
 \left(
-0.70+0.10s_i+\frac{0.10}{1+a_i}+\frac{0.10}{1+r_i}
+0.70+0.10\mathrm{SR}_i+\frac{0.10}{1+\mathrm{ATE}_i}+\frac{0.10}{1+\mathrm{RPE}_i}
 \right)
 $$
 
-Here `N` is the number of episodes and `s_i` is the episode's binary success result. The values `a_i` and `r_i` are the original per-episode ATE/RPE root-mean-square errors, numerically normalized by one dataset coordinate unit before entering the denominators. The published split SR/ATE/RPE retain their respective aggregate definitions. Score averages **episode contributions**, so it cannot be reconstructed by substituting the displayed split averages into the equation.
+Here `N` is the number of episodes. `SR_i` is episode `i`'s binary success result; `ATE_i` and `RPE_i` are its original per-episode root-mean-square errors, numerically normalized by one dataset coordinate unit in the denominators. The published split SR/ATE/RPE retain their respective aggregate definitions. Score averages **episode contributions**, so it cannot be reconstructed by substituting the displayed split averages into the equation.
 
-Full-route fidelity and heading and turn fidelity establish the trajectory-quality factor. The bracket's 0.70 is its base share; SR, ATE and RPE each contribute up to 0.10. This keeps a stationary or unrelated route from earning a high score through the older error measures alone. The two additional measures are WorldNav-specific adaptations of route and heading evaluation, not off-the-shelf published formulas. Their calculations and the five named metric functions appear in the synthetic, reference-data-free [evaluation demonstration](demonstration.py), which can be run with `python3 demonstration.py`.
+Full-route fidelity and heading and turn fidelity establish the trajectory-quality factor; SR, ATE and RPE adjust it. The two additional measures are WorldNav-specific adaptations of route and heading evaluation. The five metric calculations and their input formats are shown in the [evaluation demonstration](demonstration.py). This is a calculation reference, not the official scorer or a runnable submission.
 
 The score ranks agreement with **one recorded route and facing sequence**. Both phases use the same formula, calculated from full-precision values and displayed to six decimal places. Ties use Score as the ranking key and then the platform's submission order.
 
@@ -288,7 +288,8 @@ For technical or competition questions, contact [roboworld2026@outlook.com](mail
 | Associated workshop | [RoboPAD at NeurIPS 2026](https://robotpad2026.github.io/) |
 | GitHub Repository | [worldnav-challenge](https://github.com/F1y1113/worldnav-challenge) |
 | Track page | [WorldNav](https://f1y1113.github.io/worldnav-challenge/) |
-| Example submission, metric demonstration, and leaderboard | [CodaBench](https://www.codabench.org/competitions/18185/) |
+| Example submission and leaderboard | [CodaBench](https://www.codabench.org/competitions/18185/) |
+| Metric calculation demonstration | [demonstration.py](demonstration.py) |
 | Baseline implementation | [LCVN repository](https://github.com/F1y1113/LCVN) |
 | Dataset | [LCVN on Hugging Face](https://huggingface.co/datasets/fly1113/LCVN) |
 | Paper | [Language-Conditioned World Modeling for Visual Navigation](https://arxiv.org/abs/2603.26741) |
