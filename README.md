@@ -2,12 +2,12 @@
 
 <div align="center">
 
-**Official Track Documentation for [Track 1](https://roboworld2026.github.io/track1)**
+**Official Track Documentation for [Track 1](https://f1y1113.github.io/worldnav-challenge/)**
 
 *Built on the LCVN benchmark — "Language-Conditioned World Modeling for Visual Navigation"*<br>([LCVN repository](https://github.com/F1y1113/LCVN) | [LCVN dataset](https://huggingface.co/datasets/fly1113/LCVN) | [LCVN paper](https://arxiv.org/abs/2603.26741))
 
 [![RoboWorld](https://img.shields.io/badge/RoboWorld-2026-blue)](https://roboworld2026.github.io/)
-[![Track 1](https://img.shields.io/badge/Track-WorldNav-green)](https://roboworld2026.github.io/track1)
+[![Track 1](https://img.shields.io/badge/Track-WorldNav-green)](https://f1y1113.github.io/worldnav-challenge/)
 [![RoboPAD Workshop](https://img.shields.io/badge/NeurIPS_2026-RoboPAD_Workshop-red)](https://robotpad2026.github.io/)
 [![CodaBench](https://img.shields.io/badge/CodaBench-Submit-purple)](https://www.codabench.org/competitions/18185/)
 [![Dataset](https://img.shields.io/badge/Dataset-LCVN-yellow)](https://huggingface.co/datasets/fly1113/LCVN)
@@ -286,7 +286,7 @@ For technical questions, open an issue in this repository. For competition inqui
 |:--|:--|
 | Challenge website and registration | [RoboWorld 2026](https://roboworld2026.github.io/) |
 | Associated workshop | [RoboPAD at NeurIPS 2026](https://robotpad2026.github.io/) |
-| Track page | [WorldNav](https://roboworld2026.github.io/track1) |
+| Track page | [WorldNav](https://f1y1113.github.io/worldnav-challenge/) |
 | Example submission, metric demonstration, and leaderboard | [CodaBench](https://www.codabench.org/competitions/18185/) |
 | Baseline implementation | [LCVN repository](https://github.com/F1y1113/LCVN) |
 | Dataset | [LCVN on Hugging Face](https://huggingface.co/datasets/fly1113/LCVN) |
