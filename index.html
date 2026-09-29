@@ -5,7 +5,7 @@
   <meta name="description" content="Track 1: WorldNav - Language-Conditioned World Navigation at the RoboWorld Challenge 2026, built on the LCVN benchmark.">
   <meta name="keywords" content="Language-Conditioned World Navigation, Vision-and-Language Navigation, Open-Loop Trajectory Prediction, LCVN Benchmark, RoboWorld 2026, RoboPAD">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Track 1: WorldNav - Language-Conditioned World Navigation</title>
+  <title>RoboWorld Challenge 2026: Track 1 — WorldNav</title>
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   <link rel="stylesheet" href="./track_assets/css/bulma.min.css">
   <link rel="stylesheet" href="./track_assets/css/index.css">
@@ -18,7 +18,8 @@
     #backToTopBtn:hover { background-color: #76b900; }
     .column.is-full-width { min-width: 0; }
     .figcap { color: #666; font-size: 0.92em; margin-top: 8px; }
-    .score-box { display: inline-block; max-width: 100%; overflow-wrap: anywhere; background-color: #f5f5f5; border-radius: 12px; padding: 20px 30px; }
+    .score-box { display: block; max-width: 100%; background-color: #f5f5f5; border-radius: 12px; padding: 20px 30px; text-align: center; }
+    .score-box .formula-line { display: block; overflow-wrap: anywhere; font-size: 1.05em; font-weight: bold; color: #333; line-height: 1.7; }
     /* Tables: keep the short first-column labels on one line and keep the rows tight. */
     .content table.table td, .content table.table th { vertical-align: middle; padding: 0.45em 0.6em; }
     .content table.table td:first-child, .content table.table th:first-child { white-space: nowrap; }
@@ -91,12 +92,13 @@
                 <thead><tr><th>Component</th><th>Description</th></tr></thead>
                 <tbody>
                   <tr><td><b>Input</b></td><td>One initial egocentric RGB image and one natural-language instruction.</td></tr>
-                  <tr><td><b>Output</b></td><td>A variable-length sequence of global-planar motion and yaw updates.</td></tr>
+                  <tr><td><b>Output</b></td><td>A variable-length sequence of robot-relative forward, leftward, and yaw updates.</td></tr>
                   <tr><td><b>Termination</b></td><td>The agent decides when the trajectory ends; the submitted action sequence is scored as a whole.</td></tr>
                   <tr><td><b>Setting</b></td><td>Open-loop generation: no goal image or intermediate environmental feedback is available.</td></tr>
                 </tbody>
               </table>
             </div>
+            <p>Submit ordered <code>[dx, dy, dyaw]</code> triples: <code>dx</code> means forward motion, <code>dy</code> means leftward motion in the agent's current frame, and <code>dyaw</code> changes its heading. The private evaluator starts from the recorded initial pose; participants receive no test pose or goal. See the <a href="https://github.com/F1y1113/worldnav-challenge#-submission-format" target="_blank">submission format</a> for details.</p>
             <p>Agents may generate the trajectory autoregressively, using their own predicted future observations or states to plan subsequent actions. The instruction remains the navigation goal throughout the rollout.</p>
             <p><img src="./assets/figure4-qualitative.png" alt="Qualitative comparison of world-model navigation on the LCVN validation seen split" style="max-width: 100%; height: auto;"></p>
           </div>
@@ -205,16 +207,16 @@
 
           <h2 class="title is-3" style="margin-top: 40px;">📏 Evaluation</h2>
           <div class="content has-text-justified">
-            <p>Submissions are evaluated against one recorded trajectory using <b>Success Rate (SR)</b>, <b>Absolute Trajectory Error (ATE)</b>, <b>Relative Pose Error (RPE)</b>, <b>Full-route fidelity (D)</b>, and <b>Heading and turn fidelity (H)</b>.</p>
+            <p>Submissions are evaluated against one recorded trajectory using <b>Success Rate (SR)</b>, <b>Absolute Trajectory Error (ATE)</b>, <b>Relative Pose Error (RPE)</b>, <b>Full-route fidelity</b>, and <b>Heading and turn fidelity</b>.</p>
             <div class="table-container">
               <table class="table is-bordered is-striped is-hoverable is-fullwidth eval-table">
                 <thead><tr><th>Metric</th><th>Direction</th><th>Description</th></tr></thead>
                 <tbody>
-                  <tr><td><b>SR</b></td><td>Higher is better</td><td>Fraction ending within the reference average-step radius, subject to a 0.6 dataset-unit minimum.</td></tr>
+                  <tr><td><b>SR</b></td><td>Higher is better</td><td>Fraction of episodes whose final predicted position meets the reference endpoint criterion.</td></tr>
                   <tr><td><b>ATE</b></td><td>Lower is better</td><td>Global trajectory accuracy, measured by the Euclidean distance between aligned predicted and reference poses.</td></tr>
                   <tr><td><b>RPE</b></td><td>Lower is better</td><td>Local trajectory consistency, measured by discrepancies in relative motion between consecutive predicted and reference poses.</td></tr>
-                  <tr><td><b>Full-route fidelity (D)</b></td><td>Higher is better</td><td>Agreement with the full ordered reference route, with excess travel penalized.</td></tr>
-                  <tr><td><b>Heading and turn fidelity (H)</b></td><td>Higher is better</td><td>Facing agreement while moving and agreement of the direction, place and amount of turns.</td></tr>
+                  <tr><td><b>Full-route fidelity</b></td><td>Higher is better</td><td>Agreement with the full ordered reference route, with excess travel penalized.</td></tr>
+                  <tr><td><b>Heading and turn fidelity</b></td><td>Higher is better</td><td>Facing agreement while moving and agreement of the direction, place and amount of turns.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -222,11 +224,13 @@
             <div style="text-align: center; margin: 30px 0;">
               <h3 class="title is-4" style="color: #333; margin-bottom: 14px;">🏁 Composite Score</h3>
               <div class="score-box">
-                <span style="font-size: 1.15em; font-weight: bold; color: #333;">Score = (100 / N) Σᵢ [Dᵢ(1 + Hᵢ) / 2] [0.70 + 0.10sᵢ + 0.10 / (1 + aᵢ) + 0.10 / (1 + rᵢ)]</span>
+                <span class="formula-line">Score = (100 / N) Σᵢ</span>
+                <span class="formula-line">× [Full-route fidelityᵢ × (1 + Heading and turn fidelityᵢ) / 2]</span>
+                <span class="formula-line">× [0.70 + 0.10sᵢ + 0.10 / (1 + aᵢ) + 0.10 / (1 + rᵢ)]</span>
               </div>
             </div>
 
-            <p>Here <code>sᵢ</code> is the episode success bit; <code>aᵢ</code> and <code>rᵢ</code> are its original ATE/RPE error ingredients. Complete-route and heading quality form the base; the three familiar measures make bounded adjustments. Score is averaged per episode, so it cannot be reconstructed by inserting the displayed split averages into this equation. The <a href="https://github.com/F1y1113/worldnav-challenge#-evaluation" target="_blank">track README</a> explains D and H and links a reference-data-free demonstration.</p>
+            <p>Here <code>sᵢ</code> is the episode success bit; <code>aᵢ</code> and <code>rᵢ</code> are its original ATE/RPE error ingredients. Complete-route and heading quality form the base; the three familiar measures make bounded adjustments. Score is averaged per episode, so it cannot be reconstructed by inserting the displayed split averages into this equation. The <a href="https://github.com/F1y1113/worldnav-challenge#-evaluation" target="_blank">track README</a> describes the metrics.</p>
             <p>This score measures agreement with one recorded route and facing sequence. Both phases use the same rule and rank by Score; equal Scores follow the platform's submission order.</p>
           </div>
 
@@ -242,7 +246,7 @@
                   <tr><td>Challenge website and registration</td><td><a href="https://roboworld2026.github.io/" target="_blank">RoboWorld 2026</a></td></tr>
                   <tr><td>Associated workshop</td><td><a href="https://robotpad2026.github.io/" target="_blank">RoboPAD at NeurIPS 2026</a></td></tr>
                   <tr><td>GitHub Repository</td><td><a href="https://github.com/F1y1113/worldnav-challenge" target="_blank">worldnav-challenge</a></td></tr>
-                  <tr><td>Starting kits, submissions, and leaderboard</td><td><a href="https://www.codabench.org/competitions/18185/" target="_blank">CodaBench</a></td></tr>
+                  <tr><td>Example submission, metric demonstration, and leaderboard</td><td><a href="https://www.codabench.org/competitions/18185/" target="_blank">CodaBench</a></td></tr>
                   <tr><td>Baseline implementation</td><td><a href="https://github.com/F1y1113/LCVN" target="_blank">LCVN repository</a></td></tr>
                   <tr><td>Dataset</td><td><a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank">LCVN on Hugging Face</a></td></tr>
                   <tr><td>Paper</td><td><a href="https://arxiv.org/abs/2603.26741" target="_blank">Language-Conditioned World Modeling for Visual Navigation</a></td></tr>
@@ -260,7 +264,7 @@
             <p><b>3. Can the agent receive new observations during inference?</b><br>Only the initial RGB observation and the instruction are provided. The agent may generate and use its own predicted future observations, but it cannot access intermediate observations from the environment.</p>
             <p><b>4. Are test annotations available?</b><br>No. Phase 2 provides the initial observations and instructions needed for inference. Reference test trajectories and target annotations remain withheld.</p>
             <p><b>5. Which episodes must my submission include?</b><br>Include every episode in the official manifest exactly once. Phase 1 requires 10,806 <code>val_seen</code> episodes and 4,500 <code>val_unseen</code> episodes, covering the three instruction styles. Copy episode identifiers directly from the manifests.</p>
-            <p><b>6. What should I do if my submission is rejected?</b><br>Run the format checker that ships with the starting kit (<code>python3 check_submission.py submission.zip</code>) first: it applies the same structural rules as the official scoring program and prints the same message. Then check the CodaBench scoring log. A <code>SUBMISSION REJECTED:</code> message identifies a submission issue, such as missing episodes, duplicate identifiers, or an incorrect archive layout. Correct the reported issue and resubmit. A <code>SCORING DATA ERROR (organizer):</code> message indicates an organizer-side problem; report it through GitHub Issues or email.</p>
+            <p><b>6. What should I do if my submission is rejected?</b><br>Compare the archive root, episode IDs, and JSON fields with the downloadable example submission, then read the CodaBench scoring log. A <code>SUBMISSION REJECTED:</code> message identifies a submission issue, such as missing episodes, duplicate identifiers, or an incorrect archive layout. Correct it and resubmit. A <code>SCORING DATA ERROR (organizer):</code> message indicates an organizer-side problem; report it through GitHub Issues or email.</p>
           </div>
 
           <hr>

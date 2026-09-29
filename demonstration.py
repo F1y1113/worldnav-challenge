@@ -280,7 +280,8 @@ def compose(initial_pose, actions):
     positions, headings = [(x, y)], [yaw]
     for action in actions:
         dx, dy, dyaw = map(float, action[:3])
-        x, y, yaw = x+dx, y+dy, yaw+dyaw
+        x, y, yaw = (x+math.cos(yaw)*dx-math.sin(yaw)*dy,
+                     y+math.sin(yaw)*dx+math.cos(yaw)*dy, yaw+dyaw)
         positions.append((x, y))
         headings.append(yaw)
     return positions, headings
@@ -327,9 +328,7 @@ def episode(reference, actions):
         rpe2.append(lx*lx+ly*ly)
     ate_sum, rpe_sum = math.fsum(ate2), math.fsum(rpe2)
     a, r = math.sqrt(ate_sum/t), math.sqrt(rpe_sum/t)
-    goal = reference["goal_pose"]
-    success = int(math.dist(pred_xy[-1],goal[:2]) <
-                  max(reference["avg_step_length"],.6))
+    success = success_rate_episode(actions, reference)
     b = d*(1+h)/2
     penalty = .10*(1-success)+.10*a/(1+a)+.10*r/(1+r)
     points = 100*b*(1-penalty)
@@ -362,14 +361,14 @@ def score_split(reference_episodes, predictions):
 
 
 def _poses(actions, reference):
-    """Decode each [dx, dy, dyaw] in the dataset's global planar axes."""
+    """Decode local [forward, left, dyaw] actions from a private initial pose."""
     return compose(reference["initial_pose"], actions)
 
 
 def success_rate_episode(actions, reference):
     """The episode's SR bit; final distance is strictly below its radius."""
     xy, _ = _poses(actions, reference)
-    radius = max(reference["avg_step_length"], 0.6)
+    radius = max(reference["avg_step_length"], 1.5)
     return int(math.dist(xy[-1], reference["goal_pose"][:2]) < radius)
 
 
@@ -407,7 +406,7 @@ def relative_pose_error_episode(actions, reference):
 
 
 def full_route_fidelity(actions, reference):
-    """D: full ordered route agreement and excess-distance penalty.
+    """Full ordered route agreement and excess-distance penalty.
 
     For a moving reference, D = max(0, 1-F/rho) min(1, L_ref/L_pred),
     where F is continuous polygonal Frechet distance and rho is the maximum
@@ -418,7 +417,7 @@ def full_route_fidelity(actions, reference):
 
 
 def heading_and_turn_fidelity(actions, reference):
-    """H: (1 - movement-facing error) / (1 + turn-process error)."""
+    """Facing and turn-process agreement."""
     xy, yaw = _poses(actions, reference)
     return route_facing(reference["positions"], reference["yaws"], xy, yaw)[1]
 
@@ -435,7 +434,8 @@ def score_episode(actions, reference):
         0.70 + 0.10 * s + 0.10 / (1 + a) + 0.10 / (1 + r)
     )
     return {"SR_bit": s, "ATE_episode": a, "RPE_episode": r,
-            "D": d, "H": h, "Score_episode": points}
+            "Full-route fidelity": d, "Heading and turn fidelity": h,
+            "Score_episode": points}
 
 
 if __name__ == "__main__":

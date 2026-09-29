@@ -1,4 +1,4 @@
-<h1 align="center">🤖 RoboWorld Track 1: WorldNav <br> Language-Conditioned World Navigation</h1>
+<h1 align="center">🤖 RoboWorld Challenge 2026: Track 1 — WorldNav <br> Language-Conditioned World Navigation</h1>
 
 <div align="center">
 
@@ -31,7 +31,7 @@ The track encourages methods that couple imagination with control: world models 
 | Component | Description |
 |:--|:--|
 | **Input** | One initial egocentric RGB image and one natural-language instruction. |
-| **Output** | A variable-length sequence of global-planar motion and yaw updates. |
+| **Output** | A variable-length sequence of robot-relative forward, leftward, and yaw updates. |
 | **Termination** | The agent decides when the trajectory ends; the submitted action sequence is scored as a whole. |
 | **Setting** | Open-loop generation: no goal image or intermediate environmental feedback is available. |
 
@@ -148,7 +148,7 @@ Follow the model-specific environment setup, data preparation, training, and inf
 
 ### 3. Prepare a Submission
 
-Download the starting kit from the relevant phase on [CodaBench](https://www.codabench.org/competitions/18185/). Use its episode manifest and submission schema to export your model predictions, then package the files as described in [Submission Format](#-submission-format).
+Download the example submission ZIP from [CodaBench](https://www.codabench.org/competitions/18185/). It shows the phase's episode IDs and JSON schema; replace the illustrative actions with your predictions and follow [Submission Format](#-submission-format).
 
 ## 🧠 Baseline Models
 
@@ -167,11 +167,11 @@ Submissions are evaluated against one recorded navigation trajectory. The leader
 
 | Metric | Direction | Description |
 |:--|:--|:--|
-| **SR** | Higher is better | Fraction whose final position falls within the episode's reference average-step radius, with a 0.6 dataset-unit minimum radius. |
+| **SR** | Higher is better | Fraction of episodes whose final predicted position meets the reference endpoint criterion. |
 | **ATE** | Lower is better | Global trajectory accuracy, measured by the Euclidean distance between aligned predicted and reference poses. |
 | **RPE** | Lower is better | Local trajectory consistency, measured by discrepancies in relative motion between consecutive predicted and reference poses. |
-| **Full-route fidelity (D)** | Higher is better | Similarity of the entire ordered predicted route to the recorded route, with excess travel penalized. |
-| **Heading and turn fidelity (H)** | Higher is better | Agreement of facing direction during travel and of the direction, location and amount of turns. |
+| **Full-route fidelity** | Higher is better | Similarity of the entire ordered predicted route to the recorded route, with excess travel penalized. |
+| **Heading and turn fidelity** | Higher is better | Agreement of facing direction during travel and of the direction, location and amount of turns. |
 
 ### 🏁 Composite Score
 
@@ -180,7 +180,7 @@ Submissions are evaluated against one recorded navigation trajectory. The leader
 $$
 \mathrm{Score}
 = \frac{100}{N}\sum_{i=1}^{N}
-\frac{D_i(1+H_i)}{2}
+\frac{\mathrm{FullRouteFidelity}_i(1+\mathrm{HeadingTurnFidelity}_i)}{2}
 \left(
 0.70+0.10s_i+\frac{0.10}{1+a_i}+\frac{0.10}{1+r_i}
 \right)
@@ -188,7 +188,7 @@ $$
 
 Here `N` is the number of episodes and `s_i` is the episode's binary success result. The values `a_i` and `r_i` are the original per-episode ATE/RPE root-mean-square errors, numerically normalized by one dataset coordinate unit before entering the denominators. The published split SR/ATE/RPE retain their respective aggregate definitions. Score averages **episode contributions**, so it cannot be reconstructed by substituting the displayed split averages into the equation.
 
-The factor `D_i(1+H_i)/2` makes complete-route and heading quality the foundation of the score. The bracket's 0.70 is its base share; SR, ATE and RPE each contribute up to 0.10. A stationary or unrelated route cannot score highly solely because of its ATE/RPE values. D uses the continuous ordered polygonal Fréchet distance with a reference-span normalization and an excess-length factor. H combines movement-facing and turn-process agreement. These two normalizations are WorldNav-specific adaptations; they are not published off-the-shelf metrics. See the synthetic, reference-data-free [evaluation demonstration](demonstration.py) for the five metric functions and their calculations.
+Full-route fidelity and heading and turn fidelity establish the trajectory-quality factor. The bracket's 0.70 is its base share; SR, ATE and RPE each contribute up to 0.10. This keeps a stationary or unrelated route from earning a high score through the older error measures alone. The two additional measures are WorldNav-specific adaptations of route and heading evaluation, not off-the-shelf published formulas. Their calculations and the five named metric functions appear in the synthetic, reference-data-free [evaluation demonstration](demonstration.py), which can be run with `python3 demonstration.py`.
 
 The score ranks agreement with **one recorded route and facing sequence**. Both phases use the same formula, calculated from full-precision values and displayed to six decimal places. Ties use Score as the ranking key and then the platform's submission order.
 
@@ -203,7 +203,7 @@ Submit predictions as **one ZIP archive** through [CodaBench](https://www.codabe
 
 ### Prediction File Structure
 
-The example below illustrates the JSON structure with one episode and three motion commands. It is abbreviated; use the official starting kit for the full list of episode IDs. The list ends the trajectory, with no separate Stop token.
+The example below illustrates the JSON structure with one episode and three motion commands. It is abbreviated; use the downloadable example submission for the full list of phase episode IDs. The list ends the trajectory, with no separate Stop token.
 
 ```json
 {
@@ -222,13 +222,15 @@ The example below illustrates the JSON structure with one episode and three moti
 | `split` | `val_seen`, `val_unseen`, or `test`, matching the filename and submission phase. |
 | `episodes` | Predictions for all episodes in the corresponding official manifest. |
 | `episode_id` | The episode identifier from the manifest; each identifier must appear exactly once. |
-| `actions` | Ordered triples `[dx, dy, dyaw]`. `dx` and `dy` are displacements in the dataset's **global planar axes**; `dyaw` is a yaw update in radians. |
+| `actions` | Ordered triples `[dx, dy, dyaw]`: `dx` is forward displacement and `dy` is leftward displacement in the agent's **current local frame**; `dyaw` is a yaw update in radians. |
 
 Generate each trajectory from its initial RGB observation and natural-language instruction. The model decides how many actions to emit; submissions may use variable-length action sequences.
 
-For each action, the scorer adds `[dx, dy]` directly to the previous global position and applies `dyaw` to the predicted heading. Participants receive no initial pose or goal position.
+An episode may contain up to 64 submitted actions. Each action must satisfy `hypot(dx, dy) ≤ 2.46` in dataset coordinate units and `−π ≤ dyaw < π` radians. These are submission-format limits, independent of the withheld reference sequence.
 
-The scored submission consists of prediction files. The starting kit on CodaBench provides the episode manifests, an example submission, a local format checker (`check_submission.py`) and packaging instructions; run the checker before uploading so a malformed archive never costs one of your submission attempts. See the competition's **Submission & Evaluation** page for the full file specification.
+The private scorer starts from the recorded initial pose, rotates each submitted local displacement by the current predicted heading, and then applies `dyaw`. The initial pose and goal position are not supplied at test time. If training labels are stored as global position differences `(ΔX, ΔY)`, convert them using the training pose yaw `ψ`: `dx = cos(ψ)ΔX + sin(ψ)ΔY`, `dy = −sin(ψ)ΔX + cos(ψ)ΔY`. This conversion uses released training poses only; do not assume a test pose is available.
+
+The scored submission consists only of prediction files. The downloadable example ZIP on CodaBench is a format template, not a trained model or reference answer. See the competition's **Submission & Evaluation** page for the full file specification.
 
 ### Package and Upload
 
@@ -285,7 +287,7 @@ For technical questions, open an issue in this repository. For competition inqui
 | Challenge website and registration | [RoboWorld 2026](https://roboworld2026.github.io/) |
 | Associated workshop | [RoboPAD at NeurIPS 2026](https://robotpad2026.github.io/) |
 | Track page | [WorldNav](https://roboworld2026.github.io/track1) |
-| Starting kits, submissions, and leaderboard | [CodaBench](https://www.codabench.org/competitions/18185/) |
+| Example submission, metric demonstration, and leaderboard | [CodaBench](https://www.codabench.org/competitions/18185/) |
 | Baseline implementation | [LCVN repository](https://github.com/F1y1113/LCVN) |
 | Dataset | [LCVN on Hugging Face](https://huggingface.co/datasets/fly1113/LCVN) |
 | Paper | [Language-Conditioned World Modeling for Visual Navigation](https://arxiv.org/abs/2603.26741) |
