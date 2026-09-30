@@ -47,7 +47,7 @@ Agents may generate the trajectory autoregressively, using their own predicted f
 
 | Phase | Evaluation data | Leaderboard |
 |:--|:--|:--|
-| **Phase 1: Validation** | Released `val_seen` and `val_unseen` splits | Ranked by the `val_unseen` Score; `val_seen` metrics are available in the submission scoring log. |
+| **Phase 1: Validation** | Released `val_seen` and `val_unseen` splits | Ranked by the mean of the `val_seen` and `val_unseen` Scores (50% each). Both split files are required. |
 | **Phase 2: Final Evaluation** | Held-out test split | Ranked by the test Score. |
 
 **Phase 1 supports method development and validation; it does not determine shortlisting, final rankings, or awards. Final rankings and awards are determined entirely by the Phase 2 test Score.** Scores from the two phases are not combined.
