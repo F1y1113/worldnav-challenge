@@ -242,7 +242,7 @@ Place only the required JSON files at the archive root; do not include a parent 
 
 ### Submission Limits
 
-Each participant may submit **5 times per day** and **100 times in total per phase**. The leaderboard retains the team's best-scoring submission.
+Each participant may submit **100 times per day** and **100 times in total per phase**. The leaderboard retains the team's best-scoring submission.
 
 ## ❓ Frequently Asked Questions
 
