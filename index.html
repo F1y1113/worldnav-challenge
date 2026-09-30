@@ -136,12 +136,12 @@
               <table class="table is-bordered is-striped is-hoverable is-fullwidth">
                 <thead><tr><th>Phase</th><th>Evaluation data</th><th>Leaderboard</th></tr></thead>
                 <tbody>
-                  <tr><td><b>Phase 1: Validation</b></td><td>Released <code>val_seen</code> and <code>val_unseen</code> splits</td><td>Ranked by the <code>val_unseen</code> Score.</td></tr>
+                  <tr><td><b>Phase 1: Validation</b></td><td>Released <code>val_seen</code> and <code>val_unseen</code> splits</td><td>Ranked by the mean of the <code>val_seen</code> and <code>val_unseen</code> Scores (50% each). Both split files are required.</td></tr>
                   <tr><td><b>Phase 2: Final Evaluation</b></td><td>Held-out test split</td><td>Ranked by the test Score.</td></tr>
                 </tbody>
               </table>
             </div>
-            <p><b>Phase 1 supports method development and validation; it does not determine shortlisting, final rankings, or awards. Final rankings and awards are determined entirely by the Phase 2 test Score.</b> Scores from the two phases are not combined. The Phase 1 board is ranked by the <code>val_unseen</code> Score, and the <code>val_seen</code> metrics are reported in the submission scoring log.</p>
+            <p><b>Phase 1 supports method development and validation; it does not determine shortlisting, final rankings, or awards. Final rankings and awards are determined entirely by the Phase 2 test Score.</b> Scores from the two phases are not combined. Phase 1 reports both split Scores and ranks by their equal-weight mean.</p>
 
             <h3 class="title is-5" style="color: #76b900; margin-top: 24px;">🗓️ Timeline</h3>
             <div class="table-container">
