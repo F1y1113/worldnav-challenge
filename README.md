@@ -220,7 +220,7 @@ The example below illustrates the JSON structure with one episode and three moti
 | `episode_id` | Manifest identifier; include each exactly once. |
 | `actions` | Variable-length `[dx, dy, dyaw]` sequence. `dx` is forward, `dy` is leftward in the agent's **current local frame**, and `dyaw` is in radians. |
 
-At test time, use only the initial RGB image and instruction; the private scorer reconstructs the route from a withheld initial pose. For global training deltas `(ΔX, ΔY)`, use released training yaw `ψ`: `dx = cos(ψ)ΔX + sin(ψ)ΔY`, `dy = −sin(ψ)ΔX + cos(ψ)ΔY`.
+At test time, use only the initial RGB image and instruction; the private scorer reconstructs the route from a withheld initial pose. For global training deltas `(ΔX, ΔY)`, use released training yaw `ψ`: `dx = cos(ψ)ΔX + sin(ψ)ΔY`, `dy = −sin(ψ)ΔX + cos(ψ)ΔY`, and wrap heading updates: `dyaw = np.arctan2(np.sin(dyaw), np.cos(dyaw))` to the canonical range `[−π, π)`.
 
 See [CodaBench](https://www.codabench.org/competitions/18185/) → **Submission & Evaluation** for action limits and the complete example ZIP.
 
