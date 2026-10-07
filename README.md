@@ -70,8 +70,10 @@ See the [CodaBench competition page](https://www.codabench.org/competitions/1818
 
 ### 🏆 Awards & Recognition
 
-- **Certificates of Recognition**: The **Top 5 teams** will receive official certificates recognizing their achievements in the RoboWorld Challenge 2026. A **Best Innovative Solution** award will also recognize outstanding technical innovation.
-- **Oral Presentations**: Selected top-performing teams will be invited to give **oral presentations** at the **RoboPAD Workshop** at **NeurIPS 2026**, sharing their methods, results, and insights with the community.
+Official challenge awards are aligned with the [RoboWorld 2026 Awards & Recognition](https://roboworld2026.github.io/#awards) guidelines:
+
+- **Certificates of Recognition**: The **Top 5 teams in each track** will receive official certificates recognizing their achievements in the RoboWorld Challenge 2026. A **Best Innovative Solution** award will also recognize outstanding creativity and technical innovation.
+- **Oral Presentations**: Selected top-performing teams will be invited to give **oral presentations** at the **RoboPAD Workshop** at **NeurIPS 2026**, sharing their methods, results, and insights with the research community.
 - Challenge teaser video: [assets/challenge-teaser.mp4](./assets/challenge-teaser.mp4).
 
 ## 📊 Dataset
@@ -276,11 +278,14 @@ For technical or competition questions, contact [roboworld2026@outlook.com](mail
 
 | Resource | Link |
 |:--|:--|
-| Challenge website and registration | [RoboWorld 2026 Track 1: WorldNav](https://roboworld2026.github.io/track1) · [Registration (Google Form)](https://roboworld2026.github.io/#registration) |
-| Associated workshop | [RoboPAD at NeurIPS 2026](https://robotpad2026.github.io/) |
+| Official Track 1 Website | [RoboWorld 2026 Track 1: WorldNav](https://roboworld2026.github.io/track1) |
+| Official Challenge Portal & Registration | [RoboWorld 2026 Registration (Google Form)](https://roboworld2026.github.io/#registration) |
+| Official Awards & Recognition | [RoboWorld 2026 Awards](https://roboworld2026.github.io/#awards) |
+| Track 2 (HA-VLN 2.0) Website | [RoboWorld 2026 Track 2: HA-VLN 2.0](https://roboworld2026.github.io/track2) |
+| Associated Workshop | [RoboPAD at NeurIPS 2026](https://robotpad2026.github.io/) |
+| CodaBench Competition Portal | [CodaBench #18185](https://www.codabench.org/competitions/18185/) |
 | GitHub Repository | [worldnav-challenge](https://github.com/F1y1113/worldnav-challenge) |
-| Track page | [WorldNav](https://f1y1113.github.io/worldnav-challenge/) |
-| Example submission and leaderboard | [CodaBench](https://www.codabench.org/competitions/18185/) |
+| Track Project Page | [WorldNav](https://f1y1113.github.io/worldnav-challenge/) |
 | Metric calculation demonstration | [demonstration.py](demonstration.py) |
 | Baseline implementation | [LCVN repository](https://github.com/F1y1113/LCVN) |
 | Dataset | [LCVN on Hugging Face](https://huggingface.co/datasets/fly1113/LCVN) |
