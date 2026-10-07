@@ -13,7 +13,11 @@
 [![Dataset](https://img.shields.io/badge/Dataset-LCVN-yellow)](https://huggingface.co/datasets/fly1113/LCVN)
 [![Paper](https://img.shields.io/badge/arXiv-2603.26741-red)](https://arxiv.org/abs/2603.26741)
 
-**🏆 Prize Pool: $2,800 per track (1st: $1,500 · 2nd: $800 · 3rd: $500) + Rising Star Award**
+<p align="center">
+  <img src="./assets/track1-worldnav-poster.png" alt="RoboWorld 2026 Track 1: WorldNav Poster" width="460"/>
+</p>
+
+**🏆 Awards: Official Certificates for Top 5 Teams & NeurIPS 2026 RoboPAD Workshop Oral Presentations**
 
 <img src="https://raw.githubusercontent.com/F1y1113/LCVN/main/assets/lcvn.jpg" alt="Language-conditioned visual navigation with LCVN" width="70%" />
 
@@ -56,23 +60,19 @@ Agents may generate the trajectory autoregressively, using their own predicted f
 
 | Event | Date |
 |:--|:--|
-| Phase 1 opens | See the active phase dates on CodaBench |
-| Phase 1 deadline | October 31, 2026, 15:59 UTC |
-| Phase 2 opens | November 2026 |
-| Phase 2 deadline | November 20, 2026 |
-| Awards announcement | December 2026 |
+| Team registration opens (Google Form) | October 08, 2026 |
+| Phase 1: Validation opens | October 15, 2026, 00:00 UTC |
+| Phase 1 closes / Phase 2 opens | October 30, 2026, 23:59 UTC |
+| Final submission deadline (Phase 2) | November 30, 2026, 23:59 UTC |
+| Awards announcement | December 12, 2026 (RoboPAD Workshop @ NeurIPS 2026) |
 
 See the [CodaBench competition page](https://www.codabench.org/competitions/18185/) for the exact Phase 2 opening and closing times and schedule updates.
 
-### 🏆 Awards
+### 🏆 Awards & Recognition
 
-| Place | Award |
-|:--|:--|
-| 🥇 1st | $1,500 USD + Certificate |
-| 🥈 2nd | $800 USD + Certificate |
-| 🥉 3rd | $500 USD + Certificate |
-
-Details of the Rising Star Award are available through the [challenge website](https://roboworld2026.github.io/).
+- **Certificates of Recognition**: The **Top 5 teams** will receive official certificates recognizing their achievements in the RoboWorld Challenge 2026. A **Best Innovative Solution** award will also recognize outstanding technical innovation.
+- **Oral Presentations**: Selected top-performing teams will be invited to give **oral presentations** at the **RoboPAD Workshop** at **NeurIPS 2026**, sharing their methods, results, and insights with the community.
+- Challenge teaser video: [assets/challenge-teaser.mp4](./assets/challenge-teaser.mp4).
 
 ## 📊 Dataset
 
@@ -276,7 +276,7 @@ For technical or competition questions, contact [roboworld2026@outlook.com](mail
 
 | Resource | Link |
 |:--|:--|
-| Challenge website and registration | [RoboWorld 2026](https://roboworld2026.github.io/) |
+| Challenge website and registration | [RoboWorld 2026 Track 1: WorldNav](https://roboworld2026.github.io/track1) · [Registration (Google Form)](https://roboworld2026.github.io/#registration) |
 | Associated workshop | [RoboPAD at NeurIPS 2026](https://robotpad2026.github.io/) |
 | GitHub Repository | [worldnav-challenge](https://github.com/F1y1113/worldnav-challenge) |
 | Track page | [WorldNav](https://f1y1113.github.io/worldnav-challenge/) |
