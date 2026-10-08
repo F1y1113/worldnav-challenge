@@ -283,10 +283,20 @@ For technical or competition questions, contact [roboworld2026@gmail.com](mailto
 
 | Resource | Link |
 |:--|:--|
+| Challenge Website | [RoboWorld 2026](https://roboworld2026.github.io) |
 | Official Track 1 Website | [RoboWorld 2026 — Track 1: WorldNav](https://roboworld2026.github.io/track1) |
+| Track 1 Repository | [worldnav-challenge](https://github.com/F1y1113/worldnav-challenge) |
 | Evaluation & Leaderboard | [CodaBench Competition #18185](https://www.codabench.org/competitions/18185/) |
 | Dataset | [LCVN on Hugging Face](https://huggingface.co/datasets/fly1113/LCVN) |
 | Baseline Implementation | [LCVN Repository](https://github.com/UWMILab/LCVN) |
+
+## 💬 Community and Discussion
+
+- **Discord**: Join the [Track 1 Discord Channel](https://discord.gg/gv2yW3TaA) for real-time discussion and updates.
+- **WeChat Group (微信交流群)**: Scan the QR code below to join the **RoboWorld 2026 Track 1: WorldNav** WeChat discussion group:
+  <p align="center">
+    <img src="assets/wechat-group.png" alt="WeChat Group QR Code" width="220" />
+  </p>
 
 ## 📄 Terms & Conditions
 
