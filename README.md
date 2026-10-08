@@ -19,7 +19,6 @@
 
 **🏆 Awards: Official Certificates for Top 5 Teams & NeurIPS 2026 RoboPAD Workshop Oral Presentations**
 
-<img src="https://raw.githubusercontent.com/F1y1113/LCVN/main/assets/lcvn.jpg" alt="Language-conditioned visual navigation with LCVN" width="70%" />
 
 </div>
 
@@ -74,7 +73,6 @@ Official challenge awards are aligned with the [RoboWorld 2026 Awards & Recognit
 
 - **Certificates of Recognition**: The **Top 5 teams in each track** will receive official certificates recognizing their achievements in the RoboWorld Challenge 2026. A **Best Innovative Solution** award will also recognize outstanding creativity and technical innovation.
 - **Oral Presentations**: Selected top-performing teams will be invited to give **oral presentations** at the **RoboPAD Workshop** at **NeurIPS 2026**, sharing their methods, results, and insights with the research community.
-- Challenge teaser video: [assets/challenge-teaser.mp4](./assets/challenge-teaser.mp4).
 
 ## 📊 Dataset
 
