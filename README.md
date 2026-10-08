@@ -285,6 +285,7 @@ For technical or competition questions, contact [roboworld2026@gmail.com](mailto
 |:--|:--|
 | Challenge Website | [RoboWorld 2026](https://roboworld2026.github.io) |
 | Official Track 1 Website | [RoboWorld 2026 — Track 1: WorldNav](https://roboworld2026.github.io/track1) |
+| Team Registration | [Google Form Registration](https://roboworld2026.github.io/#registration) |
 | Track 1 Repository | [worldnav-challenge](https://github.com/F1y1113/worldnav-challenge) |
 | Evaluation & Leaderboard | [CodaBench Competition #18185](https://www.codabench.org/competitions/18185/) |
 | Dataset | [LCVN on Hugging Face](https://huggingface.co/datasets/fly1113/LCVN) |
