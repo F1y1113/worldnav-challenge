@@ -298,14 +298,14 @@ Refer to the [LCVN repository](https://github.com/F1y1113/LCVN), [dataset page](
 If you use the LCVN benchmark or the WorldNav track resources, please cite:
 
 ```bibtex
-@misc{dong2026languageconditionedworldmodelingvisual,
-      title={Language-Conditioned World Modeling for Visual Navigation},
-      author={Yifei Dong and Fengyi Wu and Yilong Dai and Lingdong Kong and Guangyu Chen and Xu Zhu and Qiyu Hu and Tianyu Wang and Johnalbert Garnica and Feng Liu and Siyu Huang and Qi Dai and Zhi-Qi Cheng},
+@misc{dong2026lcvn,
+      title={Language-Conditioned World Modeling for Visual Navigation}, 
+      author={Yifei Dong and Fengyi Wu and Yilong Dai and Lingdong Kong and Guangyu Chen and Yetong Sha and Qiyu Hu and Feng Liu and Siyu Huang and Qi Dai and Zhi-Qi Cheng},
       year={2026},
       eprint={2603.26741},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2603.26741}
+      url={https://arxiv.org/abs/2603.26741}, 
 }
 
 @misc{roboworld2026track1,
