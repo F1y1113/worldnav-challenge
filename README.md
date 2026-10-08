@@ -312,7 +312,7 @@ If you use the LCVN benchmark or the WorldNav track resources, please cite:
       title={Track 1 | WorldNav: Language-Conditioned World Navigation},
       author={RoboWorld Challenge 2026 Organizers},
       year={2026},
-      howpublished={https://f1y1113.github.io/worldnav-challenge/}
+      howpublished={https://roboworld2026.github.io/track1}
 }
 ```
 
