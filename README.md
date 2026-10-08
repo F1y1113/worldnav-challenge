@@ -299,21 +299,9 @@ For technical or competition questions, contact [roboworld2026@gmail.com](mailto
     <img src="assets/wechat-group.png" alt="WeChat Group QR Code" width="220" />
   </p>
 
-## 📄 Terms & Conditions
+## 📄 Terms and Conditions
 
-This competition is made freely available to academic and non-academic entities for non-commercial purposes such as academic research, teaching, scientific publications, or personal experimentation. Permission is granted to use the data given that you agree:
-
-- That the data in this competition comes "AS IS", without express or implied warranty. Although every effort has been made to ensure accuracy, we do not accept any responsibility for errors or omissions.
-- That you may not use the data in this competition or any derivative work for commercial purposes, such as licensing or selling the data, or using the data to procure a commercial gain.
-- That you include a reference to **RoboWorld 2026** (including the benchmark data and the specially generated data for academic challenges) in any work that makes use of the benchmark. For research papers, please cite our preferred publications as listed on our webpage.
-
-To ensure a fair comparison among all participants, we require:
-
-- All participants must follow the exact same data configuration when training and evaluating their algorithms. Please do not use any public or private datasets other than those specified for model training.
-- The theme of this competition is open-loop language-conditioned visual navigation and trajectory prediction in continuous 3D environments. Therefore, participants must generate predicted action trajectories using only the provided initial observation and instruction, without relying on private test poses, goal annotations, or ground-truth reference trajectories.
-- To ensure the above rules are followed, each participant is requested to submit code with reproducible results before the final result is announced; the code is for examination purposes only and we will manually verify the training and evaluation of each participant's model.
-
-Refer to the [LCVN repository](https://github.com/F1y1113/LCVN) and [dataset page](https://huggingface.co/datasets/fly1113/LCVN) for original dataset licenses. Participation is governed by the official Terms on [CodaBench](https://www.codabench.org/competitions/18185/). If you have questions or concerns, contact us at **roboworld2026@gmail.com**.
+Participation is governed by the official Terms & Conditions on [CodaBench](https://www.codabench.org/competitions/18185/).
 
 ## 📚 Citation
 
