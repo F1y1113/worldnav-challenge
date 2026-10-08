@@ -279,7 +279,6 @@ For technical or competition questions, contact [roboworld2026@outlook.com](mail
 | Resource | Link |
 |:--|:--|
 | Official Track 1 Website | [RoboWorld 2026 Track 1: WorldNav](https://roboworld2026.github.io/track1) |
-| Official Challenge Portal & Registration | [RoboWorld 2026 Registration (Google Form)](https://roboworld2026.github.io/#registration) |
 | Track 2 (HA-VLN 2.0) Website | [RoboWorld 2026 Track 2: HA-VLN 2.0](https://roboworld2026.github.io/track2) |
 | Associated Workshop | [RoboPAD at NeurIPS 2026](https://robotpad2026.github.io/) |
 | CodaBench Competition Portal | [CodaBench #18185](https://www.codabench.org/competitions/18185/) |
@@ -288,7 +287,6 @@ For technical or competition questions, contact [roboworld2026@outlook.com](mail
 | Metric calculation demonstration | [demonstration.py](demonstration.py) |
 | Baseline implementation | [LCVN repository](https://github.com/F1y1113/LCVN) |
 | Dataset | [LCVN on Hugging Face](https://huggingface.co/datasets/fly1113/LCVN) |
-| Paper | [Language-Conditioned World Modeling for Visual Navigation](https://arxiv.org/abs/2603.26741) |
 
 ## 📄 License and Terms
 
