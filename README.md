@@ -25,9 +25,11 @@
 
 ## 🌍 Challenge Overview
 
-**WorldNav** invites participants to develop world-model-based or vision-language-action (VLA) agents for **language-conditioned visual navigation**. Given a single initial egocentric RGB observation and a natural-language instruction, the agent must generate the full future navigation trajectory without a goal image or intermediate environmental feedback.
+**WorldNav** invites participants to develop world-model-based or vision-language-action (VLA) agents for **language-conditioned visual navigation**. Given a single initial egocentric RGB observation and a natural-language instruction, the agent must generate the full future navigation trajectory without a goal image or intermediate environmental feedback. The track encourages methods that couple imagination with control: world models that predict future observations to guide action selection, unified autoregressive models that interleave observation and action prediction, and VLA models that map vision and language to navigation actions. Policy-only methods are also welcome.
 
-The track encourages methods that couple imagination with control: world models that predict future observations to guide action selection, unified autoregressive models that interleave observation and action prediction, and VLA models that map vision and language to navigation actions. Policy-only methods are also welcome.
+<p align="center">
+  <img src="assets/figure1-teaser.png" alt="LCVN overview" width="85%" />
+</p>
 
 ### 🎯 Task Definition
 
