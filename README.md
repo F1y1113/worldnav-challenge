@@ -277,19 +277,19 @@ Include every episode in the official manifest exactly once. Phase 1 requires 10
 
 Check the CodaBench scoring log. A `SUBMISSION REJECTED:` message identifies a submission issue, such as missing episodes, duplicate identifiers, or an incorrect archive layout. Correct the reported issue and resubmit. A `SCORING DATA ERROR (organizer):` message indicates an organizer-side problem; report it to the competition contact email below.
 
-## 🔗 Contact and Resources
-
-For technical or competition questions, contact [roboworld2026@gmail.com](mailto:roboworld2026@gmail.com).
+## 🔗 Resources and Contact
 
 | Resource | Link |
 |:--|:--|
 | Challenge Website | [RoboWorld 2026](https://roboworld2026.github.io) |
 | Official Track 1 Website | [RoboWorld 2026 — Track 1: WorldNav](https://roboworld2026.github.io/track1) |
-| Team Registration | [Google Form Registration](https://roboworld2026.github.io/#registration) |
 | Track 1 Repository | [worldnav-challenge](https://github.com/F1y1113/worldnav-challenge) |
 | Evaluation & Leaderboard | [CodaBench Competition #18185](https://www.codabench.org/competitions/18185/) |
 | Dataset | [LCVN on Hugging Face](https://huggingface.co/datasets/fly1113/LCVN) |
 | Baseline Implementation | [LCVN Repository](https://github.com/UWMILab/LCVN) |
+
+For technical support, use [GitHub Issues](https://github.com/F1y1113/worldnav-challenge/issues).  
+For event and registration questions, email [roboworld2026@gmail.com](mailto:roboworld2026@gmail.com).
 
 ### 💬 Community & Discussion
 
