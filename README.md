@@ -294,7 +294,7 @@ For event and registration questions, email [roboworld2026@gmail.com](mailto:rob
 ### 💬 Community & Discussion
 
 - **Discord:** [Join the RoboWorld Track 1 Discord](https://discord.gg/gv2yW3TaA)
-- **WeChat Group:** Scan the QR code below to join the Track 1 discussion group:
+- **WeChat Group:** [Join the RoboWorld Track 1 WeChat Group](https://github.com/roboworld2026/roboworld2026.github.io/blob/main/wechat_track1.JPG)
 
 <a href="https://github.com/roboworld2026/roboworld2026.github.io/blob/main/wechat_track1.JPG" target="_blank"><img src="https://raw.githubusercontent.com/roboworld2026/roboworld2026.github.io/main/wechat_track1.JPG" alt="Track 1 WeChat Group QR Code" width="220" /></a>
 
