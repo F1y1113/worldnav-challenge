@@ -62,13 +62,27 @@ Agents may generate the trajectory autoregressively, using their own predicted f
 
 **Phase 1 supports method development and validation; it does not determine shortlisting, final rankings, or awards. Final rankings and awards are determined entirely by the Phase 2 test Score.** Scores from the two phases are not combined.
 
+#### Phase 2 inputs
+
+Each test sample contains one initial image and a `traj_data.pkl` containing only `instruction`:
+
+```text
+test/
+└── LCVN_test_00001/
+    ├── 0.jpg
+    └── traj_data.pkl
+```
+
+Use the folder name as `episode_id`. Submit all 15,303 test episodes in `test.json`; the example ZIP is available in the Phase 2 Files tab on CodaBench.
+
 ### 🗓️ Timeline
 
 | Event | Date |
 |:--|:--|
 | Team registration opens (Google Form) | October 08, 2026 |
 | Phase 1: Validation opens | October 15, 2026, 00:00 UTC |
-| Phase 1 closes / Phase 2 opens | October 30, 2026, 23:59 UTC |
+| Phase 1: Validation closes | October 30, 2026, 23:59 UTC |
+| Phase 2: Final Evaluation opens | October 31, 2026, 00:00 UTC |
 | Final submission deadline (Phase 2) | November 30, 2026, 23:59 UTC |
 | Awards announcement | December 12, 2026 (RoboPAD Workshop @ NeurIPS 2026) |
 
@@ -206,7 +220,7 @@ Submit predictions as **one ZIP archive** through [CodaBench](https://www.codabe
 
 ### Prediction File Structure
 
-The example below illustrates the JSON structure with one episode and three motion commands. It is abbreviated; use the downloadable example submission for the full list of phase episode IDs. The list ends the trajectory, with no separate Stop token.
+The example below illustrates the JSON structure with one episode and three motion commands. It is abbreviated; use the downloadable example submission for the full list of phase episode IDs. The list ends the trajectory, with no separate Stop token. Phase 2 uses `"split": "test"` and the `LCVN_test_00001` folder IDs.
 
 ```json
 {
@@ -271,7 +285,7 @@ No. Phase 2 provides the initial observations and instructions needed for infere
 
 **5. Which episodes must my submission include?**
 
-Include every episode in the official manifest exactly once. Phase 1 requires 10,806 `val_seen` episodes and 4,500 `val_unseen` episodes, covering the three instruction styles. Copy episode identifiers directly from the manifests.
+Include every episode in the official manifest exactly once. Phase 1 requires 10,806 `val_seen` episodes and 4,500 `val_unseen` episodes, covering the three instruction styles. Phase 2 requires all 15,303 test episodes, using the test folder names as episode identifiers.
 
 **6. What should I do if my submission is rejected?**
 
