@@ -60,7 +60,7 @@ Agents may generate the trajectory autoregressively, using their own predicted f
 | **Phase 1: Validation** | Released `val_seen` and `val_unseen` splits | Ranked by the mean of the `val_seen` and `val_unseen` Scores (50% each). Both split files are required. |
 | **Phase 2: Final Evaluation** | Held-out test split | Ranked by the test Score. |
 
-**Phase 1 supports method development and validation; it does not determine shortlisting, final rankings, or awards. Final rankings and awards are determined entirely by the Phase 2 test Score.** Scores from the two phases are not combined.
+**Phase 1 supports method development and validation; it does not determine shortlisting, final rankings, or awards. Final rankings and awards are determined entirely by the Phase 2 test Score.** Scores from the two phases are not combined. Phase 1 remains open for validation submissions during Phase 2.
 
 #### Phase 2 inputs
 
@@ -81,7 +81,7 @@ Use the folder name as `episode_id`. Submit all 15,303 test episodes in `test.js
 |:--|:--|
 | Team registration opens (Google Form) | October 08, 2026 |
 | Phase 1: Validation opens | October 15, 2026, 00:00 UTC |
-| Phase 1: Validation closes | October 30, 2026, 23:59 UTC |
+| Phase 1: Validation closes | November 30, 2026, 23:59 UTC |
 | Phase 2: Final Evaluation opens | October 31, 2026, 00:00 UTC |
 | Final submission deadline (Phase 2) | November 30, 2026, 23:59 UTC |
 | Awards announcement | December 12, 2026 (RoboPAD Workshop @ NeurIPS 2026) |
