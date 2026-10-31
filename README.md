@@ -259,11 +259,11 @@ For **Phase 2**, create a separate archive:
 zip -j submission_test.zip test.json
 ```
 
-Place only the required JSON files at the archive root; do not include a parent directory or unrelated files. Upload the archive to the corresponding CodaBench phase, then check the scoring log for validation results and evaluation metrics.
+Place only the required JSON files at the archive root; do not include a parent directory or unrelated files. Upload the archive to the corresponding CodaBench phase, then check My Submissions for its status and scores.
 
 ### Submission Limits
 
-Each participant may submit **100 times per day** and **100 times in total per phase**. The leaderboard retains the team's best-scoring submission.
+Phase 1 allows **100 submissions per day**; Phase 2 allows **5 per day**. Each participant may submit **100 times in total per phase**. The leaderboard retains the team's best-scoring submission.
 
 ## ❓ Frequently Asked Questions
 
@@ -289,7 +289,7 @@ Include every episode in the official manifest exactly once. Phase 1 requires 10
 
 **6. What should I do if my submission is rejected?**
 
-Check the CodaBench scoring log. A `SUBMISSION REJECTED:` message identifies a submission issue, such as missing episodes, duplicate identifiers, or an incorrect archive layout. Correct the reported issue and resubmit. A `SCORING DATA ERROR (organizer):` message indicates an organizer-side problem; report it to the competition contact email below.
+Compare the archive root, episode IDs, and JSON fields with the downloadable example ZIP. Check My Submissions for status or error messages. If the problem persists, contact the competition email below.
 
 ## 🔗 Resources and Contact
 
